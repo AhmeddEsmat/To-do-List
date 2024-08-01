@@ -18,43 +18,40 @@ function toggleTheme() {
 
 let isModalOpen = false;
 
-function closeModal(modalSelector) {
+function closeModal(modal) {
   const header = document.querySelector("header");
   const main = document.querySelector("main");
-  header.classList.toggle("blur");
-  main.classList.toggle("blur");
-  modalSelector.close();
+  header.classList.remove("blur");
+  main.classList.remove("blur");
+  modal.close();
   isModalOpen = false;
+}
+
+const closeButtons = document.querySelectorAll(".close-modal-button");
+closeButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const modal = button.closest("dialog");
+    closeModal(modal);
+  });
+});
+
+function openModal(modal) {
+  const header = document.querySelector("header");
+  const main = document.querySelector("main");
+  header.classList.add("blur");
+  main.classList.add("blur");
+  modal.showModal();
+  isModalOpen = true;
 }
 
 function openCategoryModal() {
   const modal = document.querySelector("dialog.modal");
-  const header = document.querySelector("header");
-  const main = document.querySelector("main");
-  header.classList.toggle("blur");
-  main.classList.toggle("blur");
-  modal.showModal();
-  isModalOpen = true;
-}
-
-function closeCategoryModal() {
-  const modal = document.querySelector("dialog.modal");
-  closeModal(modal);
+  openModal(modal);
 }
 
 function openTaskModal() {
   const modal = document.querySelector("dialog.task-modal");
-  const header = document.querySelector("header");
-  const main = document.querySelector("main");
-  header.classList.toggle("blur");
-  main.classList.toggle("blur");
-  modal.showModal();
-  isModalOpen = true;
-}
-
-function closeTaskModal() {
-  const modal = document.querySelector("dialog.task-modal");
-  closeModal(modal);
+  openModal(modal);
 }
 
 const modals = document.querySelectorAll("dialog");
@@ -72,9 +69,13 @@ modals.forEach((modal) => {
   });
 });
 
-document.body.addEventListener("keydown", function (e) {
+document.body.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && isModalOpen) {
-    closeTaskModal();
+    document.querySelectorAll("dialog").forEach((modal) => {
+      if (modal.open) {
+        closeModal(modal);
+      }
+    });
     const input = document.querySelector(".modal-input");
     if (input) {
       input.classList.remove("invalid");
@@ -354,7 +355,8 @@ function addTask() {
   refreshTasks();
   input.value = "";
   selectedButton.classList.remove("active");
-  closeTaskModal();
+  const taskModal = document.querySelector("dialog.task-modal");
+  closeModal(taskModal);
 }
 
 function deleteTask(taskId) {
