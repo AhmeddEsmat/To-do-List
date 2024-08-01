@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="theme-button">
+        <button
+          onclick="toggleTheme()"
+          class="toggle-theme"
+          title="toggleTheme"
+        >
+          <i class="fa-solid fa-sun sun"></i>
+          <i class="fa-solid fa-moon moon"></i>
+        </button>
+      </div>
+      <div class="title">
+        <h1>Personal<br />Task Manager</h1>
+      </div>
+    </header>
+    <main>
+      <section class="todo-section">
+        <div class="categories">
+          <div class="categories-title">
+            <div class="line"></div>
+            <p>Categories</p>
+            <div class="line"></div>
+          </div>
+          <div class="categories-buttons" id="category-view"></div>
+          <div class="add-category">
+            <button
+              class="add add-category-button"
+              onclick="openCategoryModal()"
+            >
+              Add category
+            </button>
+          </div>
+        </div>
+        <div class="tasks-dashboard">
+          <div class="add-task">
+            <p class="task-count">0 task</p>
+            <button class="add add-task-button" onclick="openTaskModal()">
+              Add new task
+            </button>
+            <button
+              class="clear-completed-button"
+              onclick="deleteAllCompletedTasks()"
+            >
+              Clear completed
+            </button>
+          </div>
+          <div class="tasks">
+            <ul class="tasks-list"></ul>
+            <div class="footer-buttons">
+              <button
+                onclick="filterActiveCategoryTasks()"
+                class="active-button"
+              >
+                Active
+              </button>
+              <button
+                onclick="filterAllTasks()"
+                class="all-button footer-active"
+              >
+                All
+              </button>
+              <button onclick="filterCompletedTasks()">Completed</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <div class="modal-container">
+      <dialog class="modal">
+        <p class="modal-title">Create category</p>
+        <input
+          value=""
+          placeholder="Category name..."
+          class="categories-modal-input"
+        />
+        <div class="categories-title">
+          <div class="line"></div>
+          <p>Categories</p>
+          <div class="line"></div>
+        </div>
+        <div class="categories-list group" id="category-modal"></div>
+        <button class="confirm" onclick="addCategory()">Add</button>
+      </dialog>
+    </div>
+    <div class="modal-container">
+      <dialog class="task-modal">
+        <p class="modal-title">Create task</p>
+        <input
+          value=""
+          placeholder="Task description..."
+          class="tasks-modal-input"
+        />
+        <div class="categories-title">
+          <div class="line"></div>
+          <p>Categories</p>
+          <div class="line"></div>
+        </div>
+        <div class="categories-list tasks-buttons group" id="task-modal"></div>
+        <button class="confirm" onclick="addTask()">Submit Task</button>
+      </dialog>
+    </div>
+    <script src="./scripts/script.js"></script>
+  </body>
+</html>
