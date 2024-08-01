@@ -301,9 +301,17 @@ button.delete-task-button {
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
   overflow-y: auto;
 }
+.close-modal-container {
+  display: flex;
+  justify-content: end;
+}
+.close-modal-button {
+  background-color: inherit;
+  padding: 1rem 1rem 0 0;
+}
 .modal-title {
   color: white;
-  margin: 1rem;
+  margin: 0 1rem 1rem 1rem;
   text-transform: uppercase;
   font-weight: 600;
 }

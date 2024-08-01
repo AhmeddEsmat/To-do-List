@@ -18,6 +18,15 @@ function toggleTheme() {
 
 let isModalOpen = false;
 
+function closeModal(modalSelector) {
+  const header = document.querySelector("header");
+  const main = document.querySelector("main");
+  header.classList.toggle("blur");
+  main.classList.toggle("blur");
+  modalSelector.close();
+  isModalOpen = false;
+}
+
 function openCategoryModal() {
   const modal = document.querySelector("dialog.modal");
   const header = document.querySelector("header");
@@ -28,9 +37,13 @@ function openCategoryModal() {
   isModalOpen = true;
 }
 
-const modal = document.querySelector("dialog.task-modal");
+function closeCategoryModal() {
+  const modal = document.querySelector("dialog.modal");
+  closeModal(modal);
+}
 
 function openTaskModal() {
+  const modal = document.querySelector("dialog.task-modal");
   const header = document.querySelector("header");
   const main = document.querySelector("main");
   header.classList.toggle("blur");
@@ -38,13 +51,10 @@ function openTaskModal() {
   modal.showModal();
   isModalOpen = true;
 }
+
 function closeTaskModal() {
-  const header = document.querySelector("header");
-  const main = document.querySelector("main");
-  header.classList.toggle("blur");
-  main.classList.toggle("blur");
-  modal.close();
-  isModalOpen = false;
+  const modal = document.querySelector("dialog.task-modal");
+  closeModal(modal);
 }
 
 document.body.addEventListener("keydown", function (e) {
@@ -96,6 +106,7 @@ function refreshCategories() {
         selectCategory(categoryKey, ".category-view-button", true),
     },
     "#category-modal": {
+      className: "category-modal-button",
       HTML: ` <i class="fa-solid fa-trash-can"></i>`,
       onClick: (categoryKey) => () => deleteCategory(categoryKey),
     },
