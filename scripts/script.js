@@ -57,6 +57,21 @@ function closeTaskModal() {
   closeModal(modal);
 }
 
+const modals = document.querySelectorAll("dialog");
+modals.forEach((modal) => {
+  modal.addEventListener("click", (e) => {
+    var rect = modal.getBoundingClientRect();
+    var isInDialog =
+      rect.top <= e.clientY &&
+      e.clientY <= rect.top + rect.height &&
+      rect.left <= e.clientX &&
+      e.clientX <= rect.left + rect.width;
+    if (!isInDialog) {
+      closeModal(modal);
+    }
+  });
+});
+
 document.body.addEventListener("keydown", function (e) {
   if (e.key === "Escape" && isModalOpen) {
     closeTaskModal();
