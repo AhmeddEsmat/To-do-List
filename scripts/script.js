@@ -141,6 +141,7 @@ function refreshCategories() {
       const category = categories[categoryKey];
       button.innerHTML = category.name + (configuration.HTML || "");
       button.style.backgroundColor = category.color;
+      button.type = "button";
 
       if (configuration.className) {
         button.classList.add(configuration.className);
@@ -333,9 +334,11 @@ function addTask() {
   const selectedButton = document.querySelector(".task-modal-button.active");
   if (input.value.trim() == "") {
     input.classList.add("invalid");
+    alert("Please enter a task description");
     return;
   }
   if (!selectedButton) {
+    alert("Please select a category");
     return;
   }
   input.classList.remove("invalid");

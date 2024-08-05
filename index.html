@@ -86,18 +86,21 @@
           </button>
         </div>
         <p class="modal-title">Create category</p>
-        <input
-          value=""
-          placeholder="Category name..."
-          class="categories-modal-input"
-        />
-        <div class="categories-title">
-          <div class="line"></div>
-          <p>Categories</p>
-          <div class="line"></div>
-        </div>
-        <div class="categories-list group" id="category-modal"></div>
-        <button class="confirm" onclick="addCategory()">Add</button>
+        <form onsubmit="addCategory(); return false;">
+          <input
+            value=""
+            placeholder="Category name..."
+            class="categories-modal-input"
+            autofocus
+          />
+          <div class="categories-title">
+            <div class="line"></div>
+            <p>Categories</p>
+            <div class="line"></div>
+          </div>
+          <div class="categories-list group" id="category-modal"></div>
+          <button type="submit" class="confirm">Add</button>
+        </form>
       </dialog>
     </div>
     <div class="modal-container">
@@ -108,18 +111,24 @@
           </button>
         </div>
         <p class="modal-title">Create task</p>
-        <input
-          value=""
-          placeholder="Task description..."
-          class="tasks-modal-input"
-        />
-        <div class="categories-title">
-          <div class="line"></div>
-          <p>Categories</p>
-          <div class="line"></div>
-        </div>
-        <div class="categories-list tasks-buttons group" id="task-modal"></div>
-        <button class="confirm" onclick="addTask()">Submit Task</button>
+        <form onsubmit="addTask(); return false;">
+          <input
+            value=""
+            placeholder="Task description..."
+            class="tasks-modal-input"
+            autofocus
+          />
+          <div class="categories-title">
+            <div class="line"></div>
+            <p>Categories</p>
+            <div class="line"></div>
+          </div>
+          <div
+            class="categories-list tasks-buttons group"
+            id="task-modal"
+          ></div>
+          <button type="submit" class="confirm">Submit Task</button>
+        </form>
       </dialog>
     </div>
     <script src="./scripts/script.js"></script>
